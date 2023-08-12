@@ -4,6 +4,22 @@ body,
   height: 100%;
 }
 
-html.dark {
+/* html.dark {
   background: #121212;
+} */
+
+/* 自定义字体 */
+@font-face{
+  font-family: 'pottaOne';
+  src: url("../asset/font/pottaOne/pottaOne.otf");
+}
+
+@font-face{
+  font-family: "muKaiShu";
+  src: url("../asset/font/ゆずの木楷書・かな改め_100font.com/ゆずの木楷書.ttf");
+}
+
+@font-face{
+  font-family: "weizhi";
+  src: url("../asset/font/id_ぽっぷふとまる_100font.com/maru401op.otf");
 }
