@@ -10,9 +10,7 @@ import Layouts from "vite-plugin-vue-layouts"
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 
-
 import { ViteAliases } from "vite-aliases"
-
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -44,4 +42,13 @@ export default defineConfig({
       extensions: ['vue'],
     }),
   ],
+  server:{
+    proxy:{
+      '/api':{
+        target:"http://localhost:1212",
+        changeOrigin:true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }
+    }
+  }
 })

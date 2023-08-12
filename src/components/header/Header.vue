@@ -1,7 +1,8 @@
 <template>
+  <!-- 0px 0px 5px 3px #eee border-b-1px border-style-solid border-color-#eee-->
   <div class="
     flex items-center justify-between
-    w-100% h-50px">
+    w-100% h-50px bg-#3b3a3a opacity-50">
     <!-- 设置最大宽度 居中 -->
     <div class="flex items-center justify-between m-auto w-100% max-w-1400px">
       <!-- logo -->
@@ -9,9 +10,9 @@
       <!-- nav -->
       <ul class="
       flex items-center
-      h-100%
+      h-50px
       text-20px" style="font-family: weizhi;">
-        <li class="m-20px font-500 text-center c-#000 cursor-pointer" v-for="item in nav" :key="item.name"
+        <li class="m-20px font-500 text-center c-#fff cursor-pointer" v-for="item in nav" :key="item.name"
           :style="isActivation(item.isActivation)" @click="pageJump(item.name)">
           {{ item.text }}
         </li>
