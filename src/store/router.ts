@@ -1,17 +1,5 @@
 import { acceptHMRUpdate, defineStore } from "pinia"
-
-type child = {
-    name: string;
-    text: string
-}
-
-type navData = {
-    name: string;
-    text: string;
-    icon: string;
-    isActivation: boolean;
-    children?: Array<child>
-}
+import navData from "~/types/route";
 
 export const useRouterStore = defineStore("router", () => {
     // 路由数据
