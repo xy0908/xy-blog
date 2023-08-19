@@ -1,37 +1,66 @@
 import { acceptHMRUpdate, defineStore } from "pinia"
 
+type child = {
+    name: string;
+    text: string
+}
+
+type navData = {
+    name: string;
+    text: string;
+    icon: string;
+    isActivation: boolean;
+    children?: Array<child>
+}
+
 export const useRouterStore = defineStore("router", () => {
     // 路由数据
-    const nav = reactive([
+    const nav = ref<navData[]>([
         {
-            name:"index",
-            text:"首页",
-            isActivation:true
+            name: "index",
+            text: "首页",
+            icon: "iconfont icon-shouye",
+            isActivation: true
         },
         {
-            name:"article",
-            text:"文章",
-            isActivation:false
+            name: "teaParty",
+            text: "茶话会",
+            icon: "iconfont icon-recha",
+            isActivation: false,
+            children: [
+                {
+                    name: "study",
+                    text: "学习"
+                }
+            ]
         },
         {
-            name:"treasureBox",
-            text:"百宝箱",
-            isActivation:false
+            name: "music",
+            text: "音乐",
+            icon: "iconfont icon-beijingyinle",
+            isActivation: false,
         },
         {
-            name:"messageBoard",
-            text:"留言板",
-            isActivation:false
+            name: "other",
+            text: "其他",
+            icon: "iconfont icon-qita",
+            isActivation: false,
+            children: [
+                {
+                    name: "about",
+                    text: "关于我"
+                },
+                {
+                    name: "contactMe",
+                    text: "联系我"
+                }
+            ]
         },
         {
-            name:"aboutMe",
-            text:"我的",
-            isActivation:false
-        },
-        {
-            name:"lgoo",
-            text:"登录",
-            isActivation:false
+            name: "lgoo",
+            text: "登录",
+            icon: "iconfont icon-denglu-copy",
+            isActivation: false
         }
     ]);
 

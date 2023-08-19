@@ -46,20 +46,11 @@
       "~asset/*": [
         "src/asset/*"
       ],
-      "~Potta One_100font.com/*": [
-        "src/asset/Potta One_100font.com/*"
+      "~sidebar/*": [
+        "src/components/sidebar/*"
       ],
-      "~新建文件夹/*": [
-        "src/asset/新建文件夹/*"
-      ],
-      "~font/*": [
-        "src/asset/font/*"
-      ],
-      "~id_ぽっぷふとまる_100font.com/*": [
-        "src/asset/id_ぽっぷふとまる_100font.com/*"
-      ],
-      "~ゆずの木楷書・かな改め_100font.com/*": [
-        "src/asset/ゆずの木楷書・かな改め_100font.com/*"
+      "~teaParty/*": [
+        "src/pages/teaParty/*"
       ]
     }
   },

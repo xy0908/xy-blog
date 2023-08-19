@@ -1,8 +1,9 @@
 <template>
-  <!-- 0px 0px 5px 3px #eee border-b-1px border-style-solid border-color-#eee-->
   <div class="
-    flex items-center justify-between
-    w-100% h-50px bg-#3b3a3a opacity-50">
+  flex items-center justify-between
+  w-100% h-50px 
+  bg-#000 opacity-50
+  ">
     <!-- 设置最大宽度 居中 -->
     <div class="flex items-center justify-between m-auto w-100% max-w-1400px">
       <!-- logo -->
