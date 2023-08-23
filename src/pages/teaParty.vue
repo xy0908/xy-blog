@@ -1,3 +1,3 @@
 <template>
-  学习
+  茶话会
 </template>

@@ -15,12 +15,6 @@ export const useRouterStore = defineStore("router", () => {
             text: "茶话会",
             icon: "iconfont icon-recha",
             isActivation: false,
-            children: [
-                {
-                    name: "study",
-                    text: "学习"
-                }
-            ]
         },
         {
             name: "music",
@@ -29,20 +23,16 @@ export const useRouterStore = defineStore("router", () => {
             isActivation: false,
         },
         {
-            name: "other",
-            text: "其他",
-            icon: "iconfont icon-qita",
+            name: "about",
+            text: "关于我",
+            icon: "iconfont icon-guanyuwomen",
             isActivation: false,
-            children: [
-                {
-                    name: "about",
-                    text: "关于我"
-                },
-                {
-                    name: "contactMe",
-                    text: "联系我"
-                }
-            ]
+        },
+        {
+            name: "contactMe",
+            text: "联系我",
+            icon: "iconfont icon-lianxiwomen",
+            isActivation: false,
         },
         {
             name: "lgoo",

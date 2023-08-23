@@ -2,10 +2,6 @@ html,
 body,
 #app {
   height: 100%;
-  /* user-select: none; */
-}
-
-html.dark {
   background: #F2F3F6;
 }
 
