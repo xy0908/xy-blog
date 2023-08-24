@@ -7,8 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BlogInfo: typeof import('./components/sidebar/BlogInfo.vue')['default']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
+    ElCol: typeof import('element-plus/es')['ElCol']
+    ElRow: typeof import('element-plus/es')['ElRow']
     FooterDescription: typeof import('./components/FooterDescription.vue')['default']
     HeadDescription: typeof import('./src/components/HeadDescription.vue')['default']
     Header: typeof import('./components/header/Header.vue')['default']

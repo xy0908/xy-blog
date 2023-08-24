@@ -1,37 +1,69 @@
 <template>
   <div class="index">
-    <div class="index-top">
-      <el-carousel :interval="5000" height="450px" arrow="always">
+    <!-- 上半部分内容:轮播图 和 图片区 -->
+    <div class=" index-top">
+      <!-- 轮播图 -->
+      <el-carousel :interval="5000" height="600px" arrow="always">
         <el-carousel-item v-for="(item, index) in carousel" :key="index">
           <img :src="item.img" alt="carousel">
           <div class="info">{{ item.title }}</div>
           <button class="button">READ MORE</button>
         </el-carousel-item>
       </el-carousel>
+      <!-- 图片区 -->
+      <div class="picture">
+        <div v-for="(item, index) in  picture " :key="index" :style="{ background: `url( ${item} )` }">
+        </div>
+      </div>
     </div>
+
+    <!-- 下半部分内容 -->
+    <div class="index-bottom">
+      <!-- 左侧内容 -->
+      <div class="left-aside">
+        <BlogInfo />
+      </div>
+      <!-- 中间内容 -->
+      <div class="main"></div>
+      <!-- 右侧内容 -->
+      <div class="right-aside"></div>
+    </div>
+
+
   </div>
 </template>
 
 <script setup lang="ts">
+// 博客信息
+import BlogInfo from "~components/sidebar/BlogInfo.vue";
+import { IcarouselType, Ipicture } from "~/types/index";
+
 // @ts-ignore
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance();
 
-type carouselType = {
-  img: string;
-  title: string
-}
-
-const require = new Require()
-const carousel = ref<null | carouselType[]>(null)
+const require = new Require();
+const carousel = ref<null | IcarouselType[]>(null);
+const picture = ref<null | Ipicture[]>(null);
 
 onMounted(async () => {
-  let { data } = await require.get(proxy.$url + "/index/carousel")
-  carousel.value = data
-})
+  // 获取轮播图数据
+  {
+    let { data } = await require.get(proxy.$url + "/index/carousel")
+    carousel.value = data
+  }
+
+  // 获取图片区数据
+  {
+    let { data } = await require.get(proxy.$url + '/index/picture')
+    picture.value = data
+  }
+});
+
 </script>
 
 <style lang="less" scoped>
 .index {
+  position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -43,9 +75,10 @@ onMounted(async () => {
   .index-top {
     display: flex;
 
+    // 轮播图
     .el-carousel {
       overflow: hidden;
-      width: 55%;
+      width: 70%;
       border-radius: 40px;
 
       .el-carousel__item {
@@ -118,6 +151,79 @@ onMounted(async () => {
           }
         }
       }
+    }
+
+    // 图片区域
+    .picture {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      margin-left: 40px;
+      height: 100%;
+
+      div {
+        margin: 10px 0;
+        background-position-y: center !important;
+        background-size: cover !important;
+        border-radius: 30px;
+
+        @keyframes moveBG {
+          0% {
+            background-position-x: 5%;
+          }
+
+          25% {
+            background-position-x: 25%;
+          }
+
+          50% {
+            background-position-x: 50%;
+          }
+
+          75% {
+            background-position-x: 75%;
+
+          }
+
+          100% {
+            background-position-x: 100%;
+          }
+        }
+
+        &:nth-child(1) {
+          width: 100%;
+          height: 70%;
+          animation: moveBG 8s linear infinite reverse;
+        }
+
+        &:nth-child(2) {
+          width: 100%;
+          height: 30%;
+        }
+      }
+    }
+  }
+
+  .index-bottom {
+    display: flex;
+    margin: 50px auto;
+    width: 85%;
+
+    // 左侧
+    .left-aside {
+      width: 250px;
+    }
+
+    // 中间
+    .main {
+      flex-grow: 1;
+      margin: 0 20px;
+    }
+
+    // 右侧
+    .right-aside {
+      width: 250px;
+
     }
   }
 }

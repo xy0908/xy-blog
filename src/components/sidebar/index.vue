@@ -28,7 +28,6 @@ import navData from "~/types/route"
 import logoImg from "~asset/logo.png"
 
 const router = useRouter()
-const r_ = ref(router.currentRoute.value.name)
 
 // 接收父组件传递的值
 const props = defineProps<{
@@ -42,12 +41,14 @@ const isActivationNav = (key: boolean) => {
 
 // 移入
 const mouseenter = (key: string) => {
+  const r_ = router.currentRoute.value.name
+
   props.nav.forEach(item => {
     item.isActivation = false
     if (item.name === key) {
       item.isActivation = true
     }
-    if (item.name === r_.value) {
+    if (item.name === r_) {
       item.isActivation = true
     }
   })
@@ -55,9 +56,10 @@ const mouseenter = (key: string) => {
 
 // 移出
 const mouseleave = (key: string) => {
+  const r_ = router.currentRoute.value.name
   props.nav.forEach(item => {
     item.isActivation = false
-    if (item.name === r_.value) {
+    if (item.name === r_) {
       item.isActivation = true
     }
   })
@@ -83,7 +85,7 @@ const pageJump = (name: string): void => {
   align-items: center;
   padding: 50px 0;
   width: 200px;
-  height: 100vh;
+  height: 100%;
   background-color: #fff;
 
   .sidebar-title {

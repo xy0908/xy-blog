@@ -48,6 +48,9 @@
       ],
       "~types/*": [
         "src/types/*"
+      ],
+      "~about/*": [
+        "src/components/about/*"
       ]
     }
   },
