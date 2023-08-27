@@ -8,7 +8,7 @@
     <!-- 信息 -->
     <div class="info">
       <h3 class="title">XiaoYang Blog</h3>
-      <div class="message">动漫、民谣吉他、前端编程，这是博主的三大标签。本站推荐博主喜欢的动漫、自己所总结的知识，也会分享一些日常心得~</div>
+      <div class="message">动漫、前端编程，这是博主的俩大标签。本站推荐博主喜欢的动漫、自己所总结的知识，也会分享一些日常心得~</div>
     </div>
 
     <!-- 具体信息 -->
@@ -27,7 +27,6 @@
 
 <script setup lang="ts">
 import Time from "~/composables/time"
-import { Require } from "~/composables/require"
 import { IblogInfo } from "~/types/index"
 
 // @ts-ignore
@@ -59,8 +58,9 @@ onUnmounted(() => {
 .blog-info {
   overflow: hidden;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 15px;
   box-shadow: 1px 0 6px #371e1e3d;
+  background: #fff;
 
   //博客背景
   .blog-info-bg {

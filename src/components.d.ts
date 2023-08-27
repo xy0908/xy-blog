@@ -7,16 +7,24 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    BlogInfo: typeof import('./components/sidebar/BlogInfo.vue')['default']
+    AboutMe: typeof import('./components/index/AboutMe.vue')['default']
+    BlogInfo: typeof import('./components/index/BlogInfo.vue')['default']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElCol: typeof import('element-plus/es')['ElCol']
+    ElCollapse: typeof import('element-plus/es')['ElCollapse']
+    ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
     ElRow: typeof import('element-plus/es')['ElRow']
     FooterDescription: typeof import('./components/FooterDescription.vue')['default']
     HeadDescription: typeof import('./src/components/HeadDescription.vue')['default']
     Header: typeof import('./components/header/Header.vue')['default']
+    IndexArticle: typeof import('./components/index/IndexArticle.vue')['default']
+    MySkills: typeof import('./components/index/MySkills.vue')['default']
+    NewTrends: typeof import('./components/index/NewTrends.vue')['default']
+    RecommendedBooks: typeof import('./components/index/RecommendedBooks.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./components/sidebar/index.vue')['default']
+    Title: typeof import('./components/public/Title.vue')['default']
   }
 }

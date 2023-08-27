@@ -25,9 +25,9 @@ const scroll = () => {
   const scrollDistance = document.documentElement.scrollTop || document.body.scrollTop || 0;
 
   if (scrollDistance >= 150) {
-    scrollbarRef.value.style.top = "-20vh"
+    scrollbarRef.value.style.top = "-30vh"
   } else {
-    scrollbarRef.value.style.top = "-110vh"
+    scrollbarRef.value.style.top = "-120vh"
   }
 }
 
@@ -47,23 +47,24 @@ onMounted(() => {
 
 <style scoped lang="less">
 .default {
-  overflow-y: scroll;
   position: relative;
   display: flex;
   width: 100%;
 
   .route {
     flex-grow: 1;
+    margin-left: 200px;
+    background: #efefef;
   }
 
   // 滚动条
   .scrollbar {
     position: absolute;
     z-index: 10;
-    top: -110vh;
+    top: -125vh;
     right: 10px;
     width: 80px;
-    height: 100vh;
+    height: 120vh;
     transition: all 1s;
     background: url("../asset/scrollbar.png") no-repeat center/cover;
     cursor: pointer;

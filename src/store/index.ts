@@ -1,23 +1,100 @@
-import type { App } from "vue"
-import { createPinia } from "pinia"
+import { acceptHMRUpdate, defineStore } from "pinia"
+import { Iabout,ImySkills } from "~/types/index";
 
-// 创建pinia实例
-const store = createPinia();
+// 随机获取数组中的一个颜色
+function randomColor():string{
+  let colorArr = [
+    "#00E67C",
+    "#FF0B00",
+    "#CB00B7",
+    "#FFDA00",
+    "#3809FF",
+    "#0097FF",
+  ];
 
-// 全局注册 store
-export function setupStore(app: App<Element>) {
-    app.use(store) // 挂载pinia
+  return colorArr[Math.floor(Math.random() * colorArr.length )];
 }
 
-export { store }
+export const useIndexStore = defineStore("index", () => {
+  // 关于我
+  const aboutData = ref<Iabout[]>([
+    {
+      icon:"iconfont icon-github-fill",
+      text:"GitHub",
+      link:""
+    },
+    {
+      icon:"iconfont icon-bzhanicon",
+      text:"bilibili",
+      link:""  
+    },        
+    {
+      icon:"iconfont icon-npm",
+      text:"npm",
+      link:""  
+    },        
+    {
+      icon:"iconfont icon-chart-arcs",
+      text:"网易云",
+      link:""  
+    },
+  ])
 
-/**
- * 将pinia单独抽离出来 注册
- * 
- * 如果直接在main.ts中注册
- * 如果在hooks文件夹中 使用 pinia
- * 会出现 pinia未实例成功 就调用的报错
- * 
- * 我们需要导入 store
- * 传入store即可
-*/
+  // 我的技术栈
+  const mySkillsData = ref<ImySkills[]>([
+    {
+      color:randomColor(),
+      text:"Vue2/3"
+    },
+    {
+      color:randomColor(),
+      text:"React"
+    }, 
+    {
+      color:randomColor(),
+      text:"Vite"
+    },   
+    {
+      color:randomColor(),
+      text:"JavaScript"
+    },    
+    {
+      color:randomColor(),
+      text:"TypeScript"
+    },        
+    {
+      color:randomColor(),
+      text:"Node.js"
+    },
+    {
+      color:randomColor(),
+      text:"Electron"
+    },
+    {
+      color:randomColor(),
+      text:"Less/Sass"
+    },
+    {
+      color:randomColor(),
+      text:"Webpack"
+    },
+    {
+      color:randomColor(),
+      text:"HTML5"
+    },
+    {
+      color:randomColor(),
+      text:"微信小程序开发"
+    },
+    {
+      color:randomColor(),
+      text:"NPM"
+    },
+  ])
+
+  return { aboutData,mySkillsData }
+})
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useIndexStore, import.meta.hot))
+}

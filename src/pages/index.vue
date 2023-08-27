@@ -21,12 +21,25 @@
     <div class="index-bottom">
       <!-- 左侧内容 -->
       <div class="left-aside">
+        <!-- 博客信息 -->
         <BlogInfo />
+        <!-- 最新动态 -->
+        <NewTrends />
+        <!-- 推荐书籍 -->
+        <RecommendedBooks />
       </div>
       <!-- 中间内容 -->
-      <div class="main"></div>
+      <div class="main">
+        <!-- 首页文章 -->
+        <IndexArticle />
+      </div>
       <!-- 右侧内容 -->
-      <div class="right-aside"></div>
+      <div class="right-aside">
+        <!-- 关于我 -->
+        <AboutMe />
+        <!-- 我的技术栈 -->
+        <MySkills />
+      </div>
     </div>
 
 
@@ -35,7 +48,18 @@
 
 <script setup lang="ts">
 // 博客信息
-import BlogInfo from "~components/sidebar/BlogInfo.vue";
+import BlogInfo from "~components/index/BlogInfo.vue";
+// 最新动态
+import NewTrends from "~components/index/NewTrends.vue";
+// 推荐书籍
+import RecommendedBooks from "~components/index/RecommendedBooks.vue";
+// 关于我
+import AboutMe from "~components/index/AboutMe.vue";
+// 我的技术栈
+import MySkills from "~components/index/MySkills.vue";
+// 首页文章
+import IndexArticle from "~components/index/IndexArticle.vue";
+
 import { IcarouselType, Ipicture } from "~/types/index";
 
 // @ts-ignore
@@ -70,7 +94,6 @@ onMounted(async () => {
   padding: 40px;
   width: 100%;
   height: 100%;
-  background: #F4F5F8;
 
   .index-top {
     display: flex;
@@ -223,7 +246,6 @@ onMounted(async () => {
     // 右侧
     .right-aside {
       width: 250px;
-
     }
   }
 }

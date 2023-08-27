@@ -78,8 +78,11 @@ const pageJump = (name: string): void => {
 
 <style scoped lang="less">
 .sidebar {
+  z-index: 100;
   overflow-y: scroll;
   box-sizing: border-box;
+  position: fixed;
+  left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
