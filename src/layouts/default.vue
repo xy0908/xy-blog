@@ -25,8 +25,10 @@ const scroll = () => {
   const scrollDistance = document.documentElement.scrollTop || document.body.scrollTop || 0;
 
   if (scrollDistance >= 150) {
-    scrollbarRef.value.style.top = "-30vh"
+    scrollbarRef.value.style.position = "fixed"
+    scrollbarRef.value.style.top = "-100px"
   } else {
+    scrollbarRef.value.style.position = "absolute"
     scrollbarRef.value.style.top = "-120vh"
   }
 }
@@ -61,10 +63,10 @@ onMounted(() => {
   .scrollbar {
     position: absolute;
     z-index: 10;
-    top: -125vh;
+    top: -50px;
     right: 10px;
     width: 80px;
-    height: 120vh;
+    height: 110vh;
     transition: all 1s;
     background: url("../asset/scrollbar.png") no-repeat center/cover;
     cursor: pointer;
