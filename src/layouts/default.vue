@@ -9,8 +9,7 @@
     </div>
 
     <!-- 滚动条 -->
-    <div class="scrollbar" ref="scrollbarRef" @click="backToTop">
-    </div>
+    <div class="scrollbar" ref="scrollbarRef" @click="backToTop"></div>
   </div>
 </template>
 
@@ -38,7 +37,6 @@ const backToTop = () => {
   document.documentElement.scrollTop = 0;
 }
 
-//
 onMounted(() => {
   scrollbarRef.value = scrollbarRef.value;
 
@@ -63,7 +61,7 @@ onMounted(() => {
   .scrollbar {
     position: absolute;
     z-index: 10;
-    top: -50px;
+    top: -120vh;
     right: 10px;
     width: 80px;
     height: 110vh;

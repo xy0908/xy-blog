@@ -8,12 +8,18 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AboutMe: typeof import('./components/index/AboutMe.vue')['default']
+    ArticleSearch: typeof import('./components/teaParty/ArticleSearch.vue')['default']
+    ArticleShow: typeof import('./components/teaParty/ArticleShow.vue')['default']
     BlogInfo: typeof import('./components/index/BlogInfo.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElInput: typeof import('element-plus/es')['ElInput']
     ElRow: typeof import('element-plus/es')['ElRow']
     FooterDescription: typeof import('./components/FooterDescription.vue')['default']
     HeadDescription: typeof import('./src/components/HeadDescription.vue')['default']

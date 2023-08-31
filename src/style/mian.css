@@ -13,3 +13,11 @@
   font-family: "weizhi";
   src: url("../asset/font/id_ぽっぷふとまる_100font.com/maru401op.otf");
 }
+
+body{
+  user-select: none;
+}
+
+body::-webkit-scrollbar{
+  display: none;
+}

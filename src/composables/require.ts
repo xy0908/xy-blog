@@ -18,7 +18,7 @@ export class Require{
       method:"post",
       url,
       data:{
-        data
+        ...data
       }
     })
     return result

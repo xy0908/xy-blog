@@ -34,12 +34,6 @@ export const useRouterStore = defineStore("router", () => {
             icon: "iconfont icon-lianxiwomen",
             isActivation: false,
         },
-        {
-            name: "lgoo",
-            text: "登录",
-            icon: "iconfont icon-denglu-copy",
-            isActivation: false
-        }
     ]);
 
     // 判断当前路由是否激活

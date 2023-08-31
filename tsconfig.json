@@ -49,8 +49,17 @@
       "~types/*": [
         "src/types/*"
       ],
-      "~index/*": [
-        "src/components/index/*"
+      "~新建文件夹/*": [
+        "src/asset/新建文件夹/*"
+      ],
+      "~rules/*": [
+        "src/rules/*"
+      ],
+      "~muisc/*": [
+        "src/asset/muisc/*"
+      ],
+      "~music/*": [
+        "src/asset/music/*"
       ]
     }
   },

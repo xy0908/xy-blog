@@ -53,6 +53,7 @@ onMounted(async () => {
     width: 100%;
     height: 350px;
     border-radius: 20px;
+    box-shadow: 1px 0 6px #371e1e3d;
     background-color: #fff;
 
     .cover-show {
@@ -158,8 +159,6 @@ onMounted(async () => {
       }
     }
   }
-
-
 }
 
 .index-article::-webkit-scrollbar {
