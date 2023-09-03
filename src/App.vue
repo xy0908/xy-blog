@@ -5,5 +5,5 @@ useHead({
 </script>
 
 <template>
-    <RouterView />
+  <RouterView />
 </template>

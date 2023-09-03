@@ -59,7 +59,7 @@
         "src/asset/muisc/*"
       ],
       "~music/*": [
-        "src/asset/music/*"
+        "src/components/music/*"
       ]
     }
   },

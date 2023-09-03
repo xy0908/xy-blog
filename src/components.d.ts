@@ -22,6 +22,8 @@ declare module 'vue' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElRow: typeof import('element-plus/es')['ElRow']
     FooterDescription: typeof import('./components/FooterDescription.vue')['default']
+    HandleBottom: typeof import('./components/music/handleBottom.vue')['default']
+    HandleButton: typeof import('./components/music/handleButton.vue')['default']
     HeadDescription: typeof import('./src/components/HeadDescription.vue')['default']
     Header: typeof import('./components/header/Header.vue')['default']
     IndexArticle: typeof import('./components/index/IndexArticle.vue')['default']
