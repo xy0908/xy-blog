@@ -39,6 +39,8 @@
         <AboutMe />
         <!-- 我的技术栈 -->
         <MySkills />
+        <!-- 发布文章 -->
+        <publishArticleButton @pageJump="pageJump" />
       </div>
     </div>
 
@@ -59,15 +61,30 @@ import AboutMe from "~components/index/AboutMe.vue";
 import MySkills from "~components/index/MySkills.vue";
 // 首页文章
 import IndexArticle from "~components/index/IndexArticle.vue";
+// 发布文章
+import publishArticleButton from "~components/index/publishArticleButton.vue"
 
 import { IcarouselType, Ipicture } from "~/types/index";
 
+
+
 // @ts-ignore
 const { proxy } = getCurrentInstance();
-
+const router = useRouter();
 const require = new Require();
 const carousel = ref<null | IcarouselType[]>(null);
 const picture = ref<null | Ipicture[]>(null);
+
+/**
+ * @function
+ * @description 页面跳转 跳转到登录页面
+*/
+const pageJump = () => {
+  // @ts-ignore
+  document.startViewTransition(() => {
+    router.push({ path: "/publishArticle" })
+  })
+}
 
 onMounted(async () => {
   // 获取轮播图数据

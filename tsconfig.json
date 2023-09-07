@@ -60,6 +60,9 @@
       ],
       "~music/*": [
         "src/components/music/*"
+      ],
+      "~publishArticle/*": [
+        "src/pages/publishArticle/*"
       ]
     }
   },

@@ -69,16 +69,22 @@ const mouseleave = (key: string) => {
 const pageJump = (name: string): void => {
   // 判断如果回到首页 特殊处理
   if (name === "index") {
-    router.push({ path: "/" })
+    // @ts-ignore
+    document.startViewTransition(() => {
+      router.push({ path: "/" })
+    })
   } else {
-    router.push(name)
+    // @ts-ignore
+    document.startViewTransition(() => {
+      router.push(name)
+    })
   }
 }
 </script>
 
 <style scoped lang="less">
 .sidebar {
-  z-index: 100;
+  z-index: 2000;
   overflow-y: scroll;
   box-sizing: border-box;
   position: fixed;

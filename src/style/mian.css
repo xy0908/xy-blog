@@ -21,3 +21,19 @@ body{
 body::-webkit-scrollbar{
   display: none;
 }
+
+
+::view-transition-oid(router){
+  animation: none 0.3s !important;
+  mix-blend-mode: normal !important;
+  filter: blur(20px) !important;
+  -webkit-animation: none 0.3s !important;
+
+}
+
+::view-transition-new(router){
+  animation: none 0.3s !important;
+  mix-blend-mode: normal !important;
+  filter: blur(20px) !important;
+  -webkit-animation: none 0.3s !important;
+}

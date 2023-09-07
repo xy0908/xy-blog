@@ -55,6 +55,7 @@ onMounted(() => {
     flex-grow: 1;
     margin-left: 200px;
     background: #efefef;
+    view-transition-name: router;
   }
 
   // 滚动条

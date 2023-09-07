@@ -29,6 +29,8 @@ declare module 'vue' {
     IndexArticle: typeof import('./components/index/IndexArticle.vue')['default']
     MySkills: typeof import('./components/index/MySkills.vue')['default']
     NewTrends: typeof import('./components/index/NewTrends.vue')['default']
+    PublishArticle: typeof import('./components/index/publishArticle.vue')['default']
+    PublishArticleButton: typeof import('./components/index/publishArticleButton.vue')['default']
     RecommendedBooks: typeof import('./components/index/RecommendedBooks.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

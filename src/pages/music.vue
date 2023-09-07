@@ -7,7 +7,8 @@
       <div class="content-wrap">
         <!-- 图片 -->
         <div class="content-img">
-          <div class="content-img-left" :style="{ background: `url(${musicStore.nowPlayMusic.picUrl}) center/cover` }">
+          <div class="content-img-left"
+            :style="{ background: `url(${musicStore.nowPlayMusic.picUrl}) no-repeat center/cover` }">
           </div>
           <div class="content-img-right">
             <img :src="changepian" alt="">
@@ -166,7 +167,7 @@ onUnmounted(() => {
   height: 100vh;
 
   .video-bg {
-    position: fixed;
+    position: absolute;
     right: 0;
     bottom: 0;
     min-width: 100%;
