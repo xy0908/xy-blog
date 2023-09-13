@@ -9,11 +9,15 @@
       </div>
       <Title :title="_title_"></Title>
     </div>
-    <MdEditor v-model="text" preview-only :toolbars="[]" />
+    <MdEditor v-model="articleContent" preview-only :toolbars="[]" />
+
+    <!-- 埋点曝光 元素暴露在页面 表示这个地方被浏览了 文章浏览量+1  -->
+    <div class="exposure" v-exposure></div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { Directive } from 'vue';
 import 'md-editor-v3/lib/style.css';
 import { MdEditor } from 'md-editor-v3';
 import { ArrowLeftBold } from "@element-plus/icons-vue"
@@ -25,7 +29,8 @@ import { ArrowLeftBold } from "@element-plus/icons-vue"
  * @param { defineEmits } emit 父组件传递的方法
  * @param { string } api 挂载在vite环境的请求地址
  * @param { Require } require 请求封装的类
- * @param { string } text 文章的内容
+ * @param { string } articleContent 文章的内容
+ * @param { boolean } isExposure 是否曝光 true页面浏览量+1 
 */
 const { _file_, _id_, _title_ } = defineProps<{
   _id_: string,
@@ -35,7 +40,39 @@ const { _file_, _id_, _title_ } = defineProps<{
 const emit = defineEmits(["isSeeFlash"])
 const api = import.meta.env.VITE_URL;
 const require = new Require();
-const text = shallowRef("");
+const articleContent = shallowRef("");
+const isExposure = ref<boolean>(false);
+
+
+/**
+ * @function
+ * @description 自定义封面的埋点曝光指令
+*/
+const vExposure: Directive<any, void> = (el: HTMLElement) => {
+  const observe = new IntersectionObserver(
+    entries => {
+      if (entries[0].intersectionRatio == 1) {
+        addBrowse();
+        observe.unobserve(el);
+      }
+    },
+    { threshold: 1 },
+  )
+  observe.observe(el)
+}
+
+/**
+ * @function
+ * @description 文章浏览量+1
+*/
+const addBrowse = async () => {
+  if (isExposure.value === false) {
+    let { data } = await require.post(api + "/index/addBrowse", {
+      _id_
+    });
+    isExposure.value = true;
+  }
+}
 
 /**
  * @function
@@ -50,8 +87,13 @@ onMounted(async () => {
   let { data } = await require.post(api + "/index/seeArticle", {
     value: _file_
   })
-  text.value = data.data;
+  articleContent.value = data.data;
 });
+
+// 页面销毁时 
+onUnmounted(() => {
+  isExposure.value = false;
+})
 </script>
 
 <style lang="less" scoped>
@@ -96,6 +138,11 @@ onMounted(async () => {
   #md-editor-v3 {
     flex-grow: 1;
     width: 100%;
+  }
+
+  .exposure {
+    width: 100%;
+    height: 10px;
   }
 }
 

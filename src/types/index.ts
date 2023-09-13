@@ -60,6 +60,10 @@ export interface IindexArticle {
     icon: string;
     text: string;
   };
+  browse: {
+    icon: string;
+    text: number;
+  };
   file: string;
   _id: string
 }

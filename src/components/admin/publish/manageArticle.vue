@@ -1,7 +1,7 @@
 <template>
   <div class="manage-article">
     <el-table :data="article" style="width:100%">
-      <el-table-column label="类型" width="180">
+      <el-table-column label="类型" width="100">
         <template #default="scope">
           <div style="display: flex; align-items: center">
             <span style="margin-left: 10px">{{ scope.row.type }}</span>
@@ -33,6 +33,13 @@
         <template #default="scope">
           <div style="display: flex; align-items: center">
             <span style="margin-left: 10px">{{ scope.row.time }}</span>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="浏览量" width="100">
+        <template #default="scope">
+          <div style="display: flex; align-items: center">
+            <span style="margin-left: 10px">{{ scope.row.browse }}</span>
           </div>
         </template>
       </el-table-column>
@@ -97,6 +104,8 @@ const handleDelete = (index: number, row: any) => {
 */
 const getArticle = async () => {
   let { data } = await require.get(api + "/admin/getArticle");
+  console.log(data);
+
   article.value = data.data
 }
 

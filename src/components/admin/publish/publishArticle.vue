@@ -153,7 +153,8 @@ const submit = async () => {
   if (publishArticleData.type !== "" && publishArticleData.img !== "" && publishArticleData.file !== "") {
     publishArticleData.time = time.getSpecificTime();
     let { data } = await require.post(api + "/admin/submitToDataBank", {
-      ...publishArticleData
+      ...publishArticleData,
+      browse: 0
     });
 
     // 提交成功

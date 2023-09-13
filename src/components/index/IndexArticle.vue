@@ -22,6 +22,10 @@
           <i :class="item.author.icon"></i>
           <span>{{ item.author.text }}</span>
         </li>
+        <li>
+          <i :class="item.browse.icon"></i>
+          <span>{{ item.browse.text }}</span>
+        </li>
         <div class="read" @click="read(item.file, item._id, item.title)">点击阅读👻</div>
       </ul>
     </div>
@@ -55,6 +59,8 @@ const read = (file: string, _id: string, title: string) => {
 onMounted(async () => {
   let { data } = await require.get(api + 'index/indexArticle')
   indexArticleData.value = data.data
+  console.log(data.data);
+
 })
 </script>
 
