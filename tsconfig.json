@@ -51,9 +51,6 @@
       ],
       "~rules/*": [
         "src/rules/*"
-      ],
-      "~admin/*": [
-        "src/components/admin/*"
       ]
     }
   },

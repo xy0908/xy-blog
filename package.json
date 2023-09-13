@@ -16,6 +16,7 @@
     "axios": "^1.4.0",
     "element-plus": "^2.3.9",
     "less": "^4.2.0",
+    "md-editor-v3": "^4.6.1",
     "pinia": "2.0.36",
     "vue": "^3.2.47",
     "vue-router": "4"

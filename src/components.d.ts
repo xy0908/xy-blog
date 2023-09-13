@@ -64,6 +64,7 @@ declare module 'vue' {
     RecommendedBooks: typeof import('./components/index/RecommendedBooks.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SeeArticle: typeof import('./components/index/seeArticle.vue')['default']
     Sidebar: typeof import('./components/sidebar/index.vue')['default']
     Title: typeof import('./components/public/Title.vue')['default']
     Type: typeof import('./components/admin/type/index.vue')['default']

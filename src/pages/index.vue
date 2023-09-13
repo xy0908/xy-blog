@@ -31,7 +31,13 @@
       <!-- 中间内容 -->
       <div class="main">
         <!-- 首页文章 -->
-        <IndexArticle />
+        <template v-if="!isSee">
+          <IndexArticle @isSeeTrue="isSeeTrue" />
+        </template>
+        <!-- 查看首页文章 -->
+        <template v-else>
+          <seeArticle :_id_="_id_" :_file_="_file_" :_title_="_title_" @isSeeFlash="isSeeFlash" />
+        </template>
       </div>
       <!-- 右侧内容 -->
       <div class="right-aside">
@@ -47,36 +53,66 @@
 </template>
 
 <script setup lang="ts">
-// 博客信息
-import BlogInfo from "~components/index/BlogInfo.vue";
-// 最新动态
-import NewTrends from "~components/index/NewTrends.vue";
-// 推荐书籍
-import RecommendedBooks from "~components/index/RecommendedBooks.vue";
-// 关于我
-import AboutMe from "~components/index/AboutMe.vue";
-// 我的技术栈
-import MySkills from "~components/index/MySkills.vue";
-// 首页文章
-import IndexArticle from "~components/index/IndexArticle.vue";
 
+/**
+ * @param { Component } BlogInfo 博客信息
+ * @param { Component } NewTrends 最新动态
+ * @param { Component } RecommendedBooks 推荐书籍
+ * @param { Component } AboutMe 关于我
+ * @param { Component } MySkills 我的技术栈
+ * @param { Component } IndexArticle 首页文章
+ * @param { Component } seeArticle 查看文章
+ * @param { IcarouselType } IcarouselType 轮播图数据结构
+ * @param { Ipicture } Ipicture 图片区数据结构
+*/
+import BlogInfo from "~components/index/BlogInfo.vue";
+import NewTrends from "~components/index/NewTrends.vue";
+import RecommendedBooks from "~components/index/RecommendedBooks.vue";
+import AboutMe from "~components/index/AboutMe.vue";
+import MySkills from "~components/index/MySkills.vue";
+import IndexArticle from "~components/index/IndexArticle.vue";
+import seeArticle from "~components/index/seeArticle.vue";
 import { IcarouselType, Ipicture } from "~/types/index";
 
+
+/**
+ * @param { string } api 挂载在vite环境的请求地址
+ * @param { Require } require 请求封装的类
+ * @param { Array<IcarouselType> } carousel 轮播图数据
+ * @param { Array<Ipicture> } picture 图片区数据
+ * @param { boolean } isSee 是否查看文章 false不查看 true查看
+ * @param { string } _file_ 查看的文章路径
+ * @param { string } _id_ 查看文章的id
+*/
 const api = import.meta.env.VITE_URL;
-const router = useRouter();
 const require = new Require();
 const carousel = ref<null | IcarouselType[]>(null);
 const picture = ref<null | Ipicture[]>(null);
+const isSee = ref<boolean>(false);
+const _file_ = ref<string>("");
+const _id_ = ref<string>("");
+const _title_ = ref<string>("")
 
 /**
  * @function
- * @description 页面跳转 跳转到登录页面
+ * @description 修改isSee值为true 设置文章路径、id、标题
 */
-const pageJump = () => {
-  // @ts-ignore
-  document.startViewTransition(() => {
-    router.push({ path: "/publishArticle" })
-  })
+const isSeeTrue = (file: string, _id: string, title: string) => {
+  isSee.value = true;
+  _file_.value = file;
+  _id_.value = _id;
+  _title_.value = title
+}
+
+/**
+ * @function
+ * @description 修改isSee值为flash 清空文章路径、id、标题
+*/
+const isSeeFlash = () => {
+  isSee.value = false;
+  _file_.value = "";
+  _id_.value = "";
+  _title_.value = "";
 }
 
 onMounted(async () => {
@@ -249,8 +285,10 @@ onMounted(async () => {
 
     // 中间
     .main {
+      overflow: hidden;
       flex-grow: 1;
       margin: 0 20px;
+      width: 60%;
     }
 
     // 右侧

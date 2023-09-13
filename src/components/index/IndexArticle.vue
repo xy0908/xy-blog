@@ -1,6 +1,6 @@
 <template>
   <div class="index-article">
-    <div class="index-article-box" v-for="(item, index) in indexArticleData">
+    <div class="index-article-box" v-for="(item, index) in indexArticleData" :key="index">
       <!-- 封面展示 -->
       <div class="cover-show" :style="{ background: `url(${item.backgroundImages}) center /cover` }">
         <div class="article-info">
@@ -22,6 +22,7 @@
           <i :class="item.author.icon"></i>
           <span>{{ item.author.text }}</span>
         </li>
+        <div class="read" @click="read(item.file, item._id, item.title)">点击阅读👻</div>
       </ul>
     </div>
 
@@ -29,14 +30,31 @@
 </template>
 
 <script setup lang="ts">
-import { IindexArticle } from "~types/index"
+import { IindexArticle } from "~types/index";
+
+/**
+ * @param { emit } emit 父组件传递的方法
+ * @param { string } api vite环境变量配置的url值
+ * @param { Require } require 封装请求的类
+ * @param { Array<IindexArticle> } indexArticleData 首页文章数据
+*/
+const emit = defineEmits(["isSeeTrue"])
 const api = import.meta.env.VITE_URL;
 const require = new Require();
-let indexArticleData = ref<null | Array<IindexArticle>>(null)
+const indexArticleData = ref<null | Array<IindexArticle>>(null);
+
+/**
+ * @function 
+ * @description 阅读文章
+*/
+const read = (file: string, _id: string, title: string) => {
+  emit("isSeeTrue", file, _id, title);
+}
+
 
 onMounted(async () => {
   let { data } = await require.get(api + 'index/indexArticle')
-  indexArticleData.value = data
+  indexArticleData.value = data.data
 })
 </script>
 
@@ -109,7 +127,7 @@ onMounted(async () => {
           margin-top: 20px;
           font-size: 40px;
           font-family: weizhi;
-          color: #6b6868;
+          color: #c59c9c;
         }
       }
 
@@ -117,7 +135,7 @@ onMounted(async () => {
         display: none;
         font-size: 40px;
         font-family: weizhi;
-        color: #6b6868;
+        color: #f17a7a;
       }
     }
 
@@ -130,14 +148,18 @@ onMounted(async () => {
       width: 100%;
       height: 50px;
 
-      &::after {
-        content: "点击阅读👻";
+      .read {
         position: absolute;
         right: 25px;
         font-size: 15px;
+        transition: all .4s;
         text-decoration: underline;
         color: #FF006C;
         cursor: pointer;
+
+        &:hover {
+          font-size: 18px;
+        }
       }
 
       li {
