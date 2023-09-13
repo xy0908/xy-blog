@@ -35,10 +35,8 @@
 <script setup lang="ts">
 import type { FormInstance } from 'element-plus';
 import { EmailInfo, UserName, Email } from "~rules/index";
-import { ElNotification } from 'element-plus'
-import { da } from 'element-plus/es/locale';
-// @ts-ignore
-const { proxy } = getCurrentInstance();
+
+const api = import.meta.env.VITE_URL;
 const require = new Require();
 const formRef = ref<FormInstance>()
 const bgData = ref<string>("");
@@ -62,7 +60,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
   formEl.validate(async (valid) => {
     if (valid) {
       // 发送邮件
-      let { data } = await require.post(proxy.$url + `/contact/email`, {
+      let { data } = await require.post(api + `/contact/email`, {
         ...fromData,
         theme: "留言"
       });
@@ -91,7 +89,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 // 获取背景图片
 onMounted(async () => {
-  let { data } = await require.get(proxy.$url + "/contact/bg");
+  let { data } = await require.get(api + "/contact/bg");
   bgData.value = data
 })
 </script>

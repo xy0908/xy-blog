@@ -5,7 +5,7 @@
   "main": "dist-electron/index.js",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode development --open",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },

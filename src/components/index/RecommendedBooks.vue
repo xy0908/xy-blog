@@ -17,13 +17,12 @@
 import { Require } from "~/composables/require"
 import { IrecommendedBooks } from "~types/index"
 
-// @ts-ignore
-const { proxy } = getCurrentInstance();
+const api = import.meta.env.VITE_URL;
 const require = new Require()
 const recommendedBooksData = ref<null | IrecommendedBooks[]>(null)
 
 onMounted(async () => {
-  let { data } = await require.get(proxy.$url + 'index/recommendedBooks')
+  let { data } = await require.get(api + 'index/recommendedBooks')
   recommendedBooksData.value = data
 })
 </script>

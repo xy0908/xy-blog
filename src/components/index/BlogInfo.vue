@@ -29,8 +29,7 @@
 import Time from "~/composables/time"
 import { IblogInfo } from "~/types/index"
 
-// @ts-ignore
-const { proxy } = getCurrentInstance();
+const api = import.meta.env.VITE_URL;
 
 const time = new Time();
 const require = new Require();
@@ -44,7 +43,7 @@ timer = setInterval(() => {
 }, 1000)
 
 onMounted(async () => {
-  let { data } = await require.get(proxy.$url + 'index/bolgInfo')
+  let { data } = await require.get(api + 'index/bolgInfo')
   blogInfo.value = data
 })
 

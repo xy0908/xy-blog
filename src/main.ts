@@ -18,8 +18,7 @@ import Title from "~components/public/Title.vue"
 */
 import { setupStore } from "./store/main"
 
-const routes = setupLayouts(generatedRoutes)
-const url = "/api"
+const routes = setupLayouts(generatedRoutes);
 
 export const createApp = ViteSSG(
   App,
@@ -28,10 +27,7 @@ export const createApp = ViteSSG(
     // 挂载pinia
     setupStore(app);
 
-    // 把代理变量 挂载到全局
-    app.config.globalProperties.$url = url;
-
     // 全局注册标题组件
-    app.component("Title",Title)
+    app.component("Title", Title)
   }
 )

@@ -28,13 +28,12 @@
 
 <script setup lang="ts">
 import { IseekArticle } from "~types/teaParty"
-// @ts-ignore
-const { proxy } = getCurrentInstance();
+const api = import.meta.env.VITE_URL;
 const require = new Require();
 const article = ref<null | Array<IseekArticle>>(null)
 
 onMounted(async () => {
-  let { data } = await require.get(proxy.$url + "/teaParty/seekArticle");
+  let { data } = await require.get(api + "/teaParty/seekArticle");
   article.value = data
 })
 </script>

@@ -49,20 +49,11 @@
       "~types/*": [
         "src/types/*"
       ],
-      "~新建文件夹/*": [
-        "src/asset/新建文件夹/*"
-      ],
       "~rules/*": [
         "src/rules/*"
       ],
-      "~muisc/*": [
-        "src/asset/muisc/*"
-      ],
-      "~music/*": [
-        "src/components/music/*"
-      ],
-      "~publishArticle/*": [
-        "src/pages/publishArticle/*"
+      "~admin/*": [
+        "src/components/admin/*"
       ]
     }
   },

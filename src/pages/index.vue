@@ -39,8 +39,6 @@
         <AboutMe />
         <!-- 我的技术栈 -->
         <MySkills />
-        <!-- 发布文章 -->
-        <publishArticleButton @pageJump="pageJump" />
       </div>
     </div>
 
@@ -61,15 +59,10 @@ import AboutMe from "~components/index/AboutMe.vue";
 import MySkills from "~components/index/MySkills.vue";
 // 首页文章
 import IndexArticle from "~components/index/IndexArticle.vue";
-// 发布文章
-import publishArticleButton from "~components/index/publishArticleButton.vue"
 
 import { IcarouselType, Ipicture } from "~/types/index";
 
-
-
-// @ts-ignore
-const { proxy } = getCurrentInstance();
+const api = import.meta.env.VITE_URL;
 const router = useRouter();
 const require = new Require();
 const carousel = ref<null | IcarouselType[]>(null);
@@ -89,13 +82,13 @@ const pageJump = () => {
 onMounted(async () => {
   // 获取轮播图数据
   {
-    let { data } = await require.get(proxy.$url + "/index/carousel")
+    let { data } = await require.get(api + "/index/carousel")
     carousel.value = data
   }
 
   // 获取图片区数据
   {
-    let { data } = await require.get(proxy.$url + '/index/picture')
+    let { data } = await require.get(api + '/index/picture')
     picture.value = data
   }
 });

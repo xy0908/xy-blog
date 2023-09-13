@@ -30,13 +30,12 @@
 
 <script setup lang="ts">
 import { IindexArticle } from "~types/index"
-// @ts-ignore
-const { proxy } = getCurrentInstance();
+const api = import.meta.env.VITE_URL;
 const require = new Require();
 let indexArticleData = ref<null | Array<IindexArticle>>(null)
 
 onMounted(async () => {
-  let { data } = await require.get(proxy.$url + 'index/indexArticle')
+  let { data } = await require.get(api + 'index/indexArticle')
   indexArticleData.value = data
 })
 </script>

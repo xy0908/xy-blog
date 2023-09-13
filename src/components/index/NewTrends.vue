@@ -15,13 +15,12 @@ import { InewTrends } from "~types/index"
 
 // 类 请求
 const require = new Require();
-// @ts-ignore
-const { proxy } = getCurrentInstance();
+const api = import.meta.env.VITE_URL;
 // 最新动态
 const newTrendsData = ref<null | Array<InewTrends>>(null)
 
 onMounted(async () => {
-  let { data } = await require.get(proxy.$url + '/index/NewTrends')
+  let { data } = await require.get(api + '/index/NewTrends')
   newTrendsData.value = data
 })
 </script>

@@ -16,8 +16,7 @@
 
 <script setup lang="ts">
 import { Itable } from "~types/teaParty"
-// @ts-ignore
-const { proxy } = getCurrentInstance();
+const api = import.meta.env.VITE_URL;
 const require = new Require();
 const tableData = ref<null | Array<Itable>>(null);
 
@@ -36,7 +35,7 @@ const changeArticle = (key: string) => {
 }
 
 onMounted(async () => {
-  let { data } = await require.get(proxy.$url + "/teaParty/table");
+  let { data } = await require.get(api + "/teaParty/table");
   tableData.value = data
 })
 </script>

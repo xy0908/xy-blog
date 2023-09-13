@@ -25,8 +25,7 @@ import { IloginImages } from "~types/index"
 
 // 类 请求
 const require = new Require();
-// @ts-ignore
-const { proxy } = getCurrentInstance();
+const api = import.meta.env.VITE_URL;
 const aboutData = useIndexStore().aboutData
 // 登录图片
 const loginImagesData = ref<null | IloginImages>(null)
@@ -36,13 +35,13 @@ const saying = ref<string>("")
 onMounted(async () => {
   // 是否登录 的背景图片
   {
-    let { data } = await require.get(proxy.$url + '/index/loginDisplay')
+    let { data } = await require.get(api + '/index/loginDisplay')
     loginImagesData.value = data
   }
 
   // wellKnownSaying
   {
-    let { data } = await require.get(proxy.$url + '/index/wellKnownSaying')
+    let { data } = await require.get(api + '/index/wellKnownSaying')
     saying.value = data
   }
 

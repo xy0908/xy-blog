@@ -15,13 +15,12 @@
 
 <script setup lang="ts">
 import { Iabout } from "~types/about"
-// @ts-ignore
-const { proxy } = getCurrentInstance();
+const api = import.meta.env.VITE_URL;
 const require = new Require();
 const aboutBg = ref<Array<Iabout> | null>(null);
 
 onMounted(async () => {
-  let { data } = await require.get(proxy.$url + "/about/aboutInfo");
+  let { data } = await require.get(api + "/about/aboutInfo");
   aboutBg.value = data
 })
 </script>
