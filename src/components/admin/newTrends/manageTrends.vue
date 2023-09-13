@@ -1,17 +1,17 @@
 <template>
-  <div class="manage-type">
-    <el-table :data="types" style="width: 100%">
-      <el-table-column label="类型" width="180">
+  <div class="manage-trends">
+    <el-table :data="newTrends" style="width: 100%">
+      <el-table-column label="动态" width="180">
         <template #default="scope">
           <div style="display: flex; align-items: center">
-            <span style="margin-left: 10px">{{ scope.row.type }}</span>
+            <span style="margin-left: 10px">{{ scope.row.trends }}</span>
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="id" width="300">
+      <el-table-column label="时间" width="300">
         <template #default="scope">
           <div style="display: flex; align-items: center">
-            <span style="margin-left: 10px">{{ scope.row._id }}</span>
+            <span style="margin-left: 10px">{{ scope.row.time }}</span>
           </div>
         </template>
       </el-table-column>
@@ -25,27 +25,26 @@
 </template>
 
 <script setup lang="ts">
-import { IArticleType } from "~types/admin";
+import { IManageTrends } from "~types/admin";
 
 /**
  * @param { string } api 开发环境env的url
  * @param { Require } require 封装请求数据的类
- * @param { Array<string> } types 文章类型数据
+ * @param { Array<string> } newTrends 最新动态数据
 */
 const api = import.meta.env.VITE_URL;
 const require = new Require();
-const types = ref<Array<IArticleType>>([])
+const newTrends = ref<Array<IManageTrends>>([])
 
 /**
  * @function
- * @description 获取类型
+ * @description 获取动态
 */
-const getType = async () => {
-  let { data } = await require.get(api + "admin/getType");
-  types.value = data.data;
-
+const getNewTrends = async () => {
+  let { data } = await require.get(api + "newTrends/getNewTrends");
+  newTrends.value = data.data;
   ElNotification({
-    title: '文章类型',
+    title: '最新动态',
     message: data.value,
     type: 'success',
   })
@@ -54,7 +53,7 @@ const getType = async () => {
 
 /**
  * @function
- * @description 删除类型
+ * @description 删除动态
 */
 const handleDelete = (index: number, row: any) => {
   ElMessageBox.confirm(
@@ -66,7 +65,7 @@ const handleDelete = (index: number, row: any) => {
       type: 'warning',
     }
   ).then(() => {
-    require.post(api + "/admin/deleteType", {
+    require.post(api + "/newTrends/deleteNewTrends", {
       _id: row._id
     }).then(res => {
       ElNotification({
@@ -75,7 +74,7 @@ const handleDelete = (index: number, row: any) => {
         type: 'success',
       })
     })
-    getType();
+    getNewTrends();
   }).catch(() => {
     ElNotification({
       title: '删除取消',
@@ -86,9 +85,10 @@ const handleDelete = (index: number, row: any) => {
 }
 
 onMounted(async () => {
-  getType();
+  getNewTrends();
 })
 </script>
 
 <style scoped lang="less">
 </style>
+

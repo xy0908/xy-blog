@@ -66,14 +66,19 @@ const submitForm = (formEl: FormInstance | undefined) => {
       });
 
       if (data.code === 1) {
-        ElMessage({
+        ElNotification({
+          title: '发布成功',
           message: data.value,
           type: 'success',
-        });
+        })
         localStorage.setItem(key, data.token);
         location.reload();
       } else {
-        ElMessage.error(data.value)
+        ElNotification({
+          title: '发布失败',
+          message: data.value,
+          type: 'error',
+        })
       }
     } else {
       // 验证规则不通过

@@ -59,6 +59,7 @@
 
 <script setup lang="ts">
 import type { FormInstance, UploadFile, UploadFiles } from 'element-plus';
+import Time from '~composables/time';
 import { type, title, describe, author } from "~rules/publishArticle";
 import { UploadFilled } from "@element-plus/icons-vue";
 import { IPublishArticleType } from "~types/admin";
@@ -73,7 +74,7 @@ import { Itable } from "~types/teaParty"
  * @param { IPublishArticleType } publishArticleData 发布文章数据
  * @param { Array<string> } tableData 发布文章的标签
  * @param { any } rules 表单验证规则
- * @param { Store } admin 管理员仓库
+ * @param { Time } time 封装获取时间的类
 */
 const api = import.meta.env.VITE_URL;
 const require = new Require();
@@ -96,7 +97,7 @@ const rules = reactive({
   describe: [{ validator: describe, trigger: "blur" }],
   author: [{ validator: author, trigger: "blur" }],
 })
-const admin = useAdminStore();
+const time = new Time();
 
 
 /**
@@ -150,23 +151,32 @@ const resetForm = () => {
 */
 const submit = async () => {
   if (publishArticleData.type !== "" && publishArticleData.img !== "" && publishArticleData.file !== "") {
-    publishArticleData.time = admin.getTime();
+    publishArticleData.time = time.getSpecificTime();
     let { data } = await require.post(api + "/admin/submitToDataBank", {
       ...publishArticleData
     });
 
     // 提交成功
     if (data.code === 1) {
-      ElMessage({
+      ElNotification({
+        title: '发布成功',
         message: data.value,
         type: 'success',
-      });
+      })
       resetForm();
     } else {
-      ElMessage.error(data.value)
+      ElNotification({
+        title: '发布失败',
+        message: data.value,
+        type: 'error',
+      })
     }
   } else {
-    ElMessage.error('提交失败,文章类型,文章封面或者文章内容。没有提交')
+    ElNotification({
+      title: '提交失败',
+      message: "提交失败,文章类型,文章封面或者文章内容。没有提交",
+      type: 'error',
+    })
   }
 }
 

@@ -8,7 +8,9 @@
         <el-tab-pane label="文章类型管理" name="second">
           <types />
         </el-tab-pane>
-        <el-tab-pane label="Role" name="third">Role</el-tab-pane>
+        <el-tab-pane label="动态管理" name="third">
+          <newTrends />
+        </el-tab-pane>
         <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
       </el-tabs>
     </div>
@@ -17,7 +19,10 @@
 
 <script setup lang="ts">
 import articleWrap from './publish/index.vue';
-import types from "./type/index.vue"
+import types from "./type/index.vue";
+import newTrends from "./newTrends/index.vue";
+
+
 
 const activeName = ref('first')
 

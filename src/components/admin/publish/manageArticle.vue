@@ -75,16 +75,18 @@ const handleDelete = (index: number, row: any) => {
     require.post(api + "/admin/deleteArticle", {
       _id: row._id
     }).then(res => {
-      ElMessage({
-        type: 'success',
+      ElNotification({
+        title: '发布成功',
         message: res.data.value,
+        type: 'success',
       })
     })
     getArticle();
   }).catch(() => {
-    ElMessage({
+    ElNotification({
+      title: '删除取消',
+      message: "取消成功",
       type: 'info',
-      message: '取消成功',
     })
   })
 }

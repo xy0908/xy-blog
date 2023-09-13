@@ -67,13 +67,19 @@ const submitForm = (formEl: FormInstance | undefined) => {
       if (data.code === 1) {
         // 发送成功
         resetForm(formRef.value);
-        ElMessage({
+        ElNotification({
+          title: '留言成功',
           message: data.value,
           type: 'success',
         })
+
       } else {
         // 发送失败
-        ElMessage.error(data.value)
+        ElNotification({
+          title: '留言失败',
+          message: data.value,
+          type: 'error',
+        })
       }
     } else {
       console.log('error submit!')

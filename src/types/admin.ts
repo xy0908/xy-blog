@@ -27,3 +27,9 @@ export interface IPublishCompleted {
   _id: string;
 }
 
+// 管理最新动态的数据类型
+export interface IManageTrends {
+  trends: string;
+  time: string;
+  _id: string;
+}

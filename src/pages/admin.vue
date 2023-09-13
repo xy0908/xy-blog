@@ -48,13 +48,18 @@ const automaticLogon = async () => {
 
     if (data.code === 1) {
       logonBol.value = true
-      ElMessage({
+      ElNotification({
+        title: '自动登录',
         message: data.value,
         type: 'success',
-      });
+      })
     } else {
       logonBol.value = false
-      ElMessage.error(data.value)
+      ElNotification({
+        title: '自动登录',
+        message: data.value,
+        type: 'error',
+      })
     }
 
   }
