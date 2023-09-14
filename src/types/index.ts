@@ -65,5 +65,6 @@ export interface IindexArticle {
     text: number;
   };
   file: string;
-  _id: string
+  _id: string;
+  isRecommend: boolean;
 }

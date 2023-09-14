@@ -73,8 +73,8 @@ const handleDelete = (index: number, row: any) => {
         message: res.data.value,
         type: 'success',
       })
+      newTrends.value.splice(index, 1)
     })
-    getNewTrends();
   }).catch(() => {
     ElNotification({
       title: '删除取消',

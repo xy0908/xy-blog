@@ -23,5 +23,6 @@ export interface IseekArticle {
     text: string;
   };
   file: string;
-  _id: string
+  _id: string;
+  isRecommend: boolean;
 }

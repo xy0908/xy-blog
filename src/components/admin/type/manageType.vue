@@ -74,8 +74,9 @@ const handleDelete = (index: number, row: any) => {
         message: res.data.value,
         type: 'success',
       })
+      types.value.splice(index, 1)
     })
-    getType();
+
   }).catch(() => {
     ElNotification({
       title: '删除取消',
