@@ -119,7 +119,7 @@ const isSeeFlash = () => {
 onMounted(async () => {
   // 获取轮播图数据
   {
-    let { data } = await require.get(api + "/index/carousel")
+    let { data } = await require.get(api + "/index/carousel");
     carousel.value = data
   }
 

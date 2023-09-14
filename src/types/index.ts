@@ -1,7 +1,8 @@
 // 轮播图的数据类型
 export interface IcarouselType {
   img: string;
-  title: string
+  title: string;
+  file: string
 }
 
 // 图片区的数据类型
