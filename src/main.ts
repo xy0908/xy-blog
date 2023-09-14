@@ -23,7 +23,7 @@ const routes = setupLayouts(generatedRoutes);
 export const createApp = ViteSSG(
   App,
   { routes },
-  ({ app, router, initialState }) => {
+  ({ app }) => {
     // 挂载pinia
     setupStore(app);
 

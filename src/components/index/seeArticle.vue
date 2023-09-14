@@ -67,7 +67,7 @@ const vExposure: Directive<any, void> = (el: HTMLElement) => {
 */
 const addBrowse = async () => {
   if (isExposure.value === false) {
-    let { data } = await require.post(api + "/index/addBrowse", {
+    await require.post(api + "/index/addBrowse", {
       _id_
     });
     isExposure.value = true;
@@ -87,6 +87,8 @@ onMounted(async () => {
   let { data } = await require.post(api + "/index/seeArticle", {
     value: _file_
   })
+  console.log(data);
+
   articleContent.value = data.data;
 });
 

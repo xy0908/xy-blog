@@ -1,41 +1,51 @@
 <template>
   <ul class="article-show">
-    <li v-for="(item, index) in article" :key="index">
-      <!-- 封面 -->
-      <div class="cover" :style="{ background: `url(${item.backgroundImages}) center/cover` }"></div>
-      <!-- 信息 -->
-      <div class="info">
-        <!-- 文章信息 -->
-        <div class="article-info">
-          <h4>{{ item.title }}</h4>
-          <span>{{ item.message }}</span>
-        </div>
-        <!-- 附加信息 -->
-        <div class="additional-info">
-          <div class="additional-info-div">
-            <i :class="item.time.icon"></i>
-            <span>{{ item.time.text }}</span>
+    <template v-if="article?.length !== 0">
+      <li v-for="(item, index) in article" :key="index" @click="see(item.file, item._id, item.title)">
+        <!-- 封面 -->
+        <div class="cover" :style="{ background: `url(${item.backgroundImages}) center/cover` }"></div>
+        <!-- 信息 -->
+        <div class="info">
+          <!-- 文章信息 -->
+          <div class="article-info">
+            <h4>{{ item.title }}</h4>
+            <span>{{ item.message }}</span>
           </div>
-          <div class="additional-info-div">
-            <i :class="item.author.icon"></i>
-            <span>{{ item.author.text }}</span>
+          <!-- 附加信息 -->
+          <div class="additional-info">
+            <div class="additional-info-div">
+              <i :class="item.time.icon"></i>
+              <span>{{ item.time.text }}</span>
+            </div>
+            <div class="additional-info-div">
+              <i :class="item.author.icon"></i>
+              <span>{{ item.author.text }}</span>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </template>
+    <template v-else>
+      <el-empty :image-size="200" />
+    </template>
   </ul>
 </template>
 
 <script setup lang="ts">
-import { IseekArticle } from "~types/teaParty"
-const api = import.meta.env.VITE_URL;
-const require = new Require();
-const article = ref<null | Array<IseekArticle>>(null)
+import { IseekArticle } from "~types/teaParty";
 
-onMounted(async () => {
-  let { data } = await require.get(api + "/teaParty/seekArticle");
-  article.value = data
-})
+/**
+ * @param { Array<IseekArticle> } article 所有文章 【父组件传递的数据】
+*/
+const { article } = defineProps<{
+  article: Array<IseekArticle> | null
+}>();
+const emit = defineEmits(["isSeeTrue"])
+
+
+const see = (file: string, id: string, title: string) => {
+  emit("isSeeTrue", file, id, title)
+}
 </script>
 
 <style scoped lang="less">
@@ -55,6 +65,12 @@ onMounted(async () => {
     border-radius: 15px;
     box-shadow: 1px 0 6px #371e1e3d;
     background-color: #fff;
+    transition: all .4s;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     .cover {
       width: 250px;
@@ -87,12 +103,18 @@ onMounted(async () => {
 
       .additional-info {
         display: flex;
+        flex-wrap: nowrap;
 
         .additional-info-div {
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: center;
+          align-items: center;
+          margin: 0 10px;
           color: #777;
 
-          &:nth-child(2) {
-            margin-left: 40px;
+          &:nth-child(1) {
+            margin-left: 0px;
           }
 
           i {

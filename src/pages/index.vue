@@ -83,6 +83,7 @@ import { IcarouselType, Ipicture } from "~/types/index";
  * @param { boolean } isSee 是否查看文章 false不查看 true查看
  * @param { string } _file_ 查看的文章路径
  * @param { string } _id_ 查看文章的id
+ * @param { string } _title_ 文章标题
 */
 const api = import.meta.env.VITE_URL;
 const require = new Require();
