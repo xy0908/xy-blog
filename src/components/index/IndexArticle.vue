@@ -43,7 +43,6 @@ import { IindexArticle } from "~types/index";
  * @param { Array<IindexArticle> } indexArticleData 首页文章数据
  * @param { Store } seeArticleStore 查看文章的仓库
 */
-const emit = defineEmits(["isSeeTrue"])
 const api = import.meta.env.VITE_URL;
 const require = new Require();
 const indexArticleData = ref<null | Array<IindexArticle>>(null);

@@ -2,7 +2,8 @@
 export interface IcarouselType {
   img: string;
   title: string;
-  file: string
+  file: string;
+  _id: string
 }
 
 // 图片区的数据类型

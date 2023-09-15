@@ -7,7 +7,7 @@
         <el-carousel-item v-for="(item, index) in carousel" :key="index">
           <img :src="item.img" alt="carousel">
           <div class="info">{{ item.title }}</div>
-          <button class="button">READ MORE</button>
+          <button class="button" @click="seeArticle_AND_pageJump(item.file, item._id, item.title)">READ MORE</button>
         </el-carousel-item>
       </el-carousel>
       <!-- 图片区 -->
@@ -82,12 +82,25 @@ import { IcarouselType, Ipicture } from "~/types/index";
  * @param { Array<IcarouselType> } carousel 轮播图数据
  * @param { Array<Ipicture> } picture 图片区数据
  * @param { Store } seeArticleStore 查看文章的仓库
+ * @param { Router } router vue路由
 */
 const api = import.meta.env.VITE_URL;
 const require = new Require();
 const carousel = ref<null | IcarouselType[]>(null);
 const picture = ref<null | Ipicture[]>(null);
 const seeArticleStore = useSeeArticleStore();
+const router = useRouter();
+
+
+/**
+ * 查看文章和页面跳转
+*/
+const seeArticle_AND_pageJump = (file: string, _id: string, title: string) => {
+  seeArticleStore.isSeeTrue(file, _id, title);
+  router.push({
+    name: "teaParty",
+  })
+}
 
 
 onMounted(async () => {
