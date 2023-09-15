@@ -5,7 +5,7 @@
       <li v-for="(item, index) in recommendedBooksData" :key="index">
         <img :src="item.img" alt="">
         <div class="info">
-          <h4>{{ item.title }}</h4>
+          <h4>{{ item.bookName }}</h4>
           <span>{{ item.time }}</span>
         </div>
       </li>
@@ -15,15 +15,21 @@
 
 <script setup lang="ts">
 import { Require } from "~/composables/require"
-import { IrecommendedBooks } from "~types/index"
+
+type books = {
+  bookName: string;
+  time: string;
+  img: string;
+  _id: string
+}
 
 const api = import.meta.env.VITE_URL;
 const require = new Require()
-const recommendedBooksData = ref<null | IrecommendedBooks[]>(null)
+const recommendedBooksData = ref<null | books[]>(null)
 
 onMounted(async () => {
-  let { data } = await require.get(api + 'index/recommendedBooks')
-  recommendedBooksData.value = data
+  let { data } = await require.get(api + "/recommendBooks/getBooks");
+  recommendedBooksData.value = data.data
 })
 </script>
 

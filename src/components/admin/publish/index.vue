@@ -2,10 +2,10 @@
   <div class="article">
     <el-tabs v-model="activeName" class="demo-tabs">
       <el-tab-pane label="发布文章" name="first">
-        <publishArticle></publishArticle>
+        <ADMINpublishArticle></ADMINpublishArticle>
       </el-tab-pane>
       <el-tab-pane label="管理文章" name="second">
-        <manageArticle></manageArticle>
+        <ADMINmanageArticle></ADMINmanageArticle>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -13,8 +13,8 @@
 
 
 <script setup lang="ts">
-import publishArticle from './publishArticle.vue';
-import manageArticle from "./manageArticle.vue";
+import ADMINpublishArticle from './ADMIN_publishArticle.vue';
+import ADMINmanageArticle from "./ADMIN_manageArticle.vue";
 
 const activeName = ref('first')
 </script>

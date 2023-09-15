@@ -11,7 +11,9 @@
         <el-tab-pane label="动态管理" name="third">
           <newTrends />
         </el-tab-pane>
-        <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
+        <el-tab-pane label="推荐书籍" name="fourth">
+          <recommendBooks />
+        </el-tab-pane>
       </el-tabs>
     </div>
   </div>
@@ -21,7 +23,7 @@
 import articleWrap from './publish/index.vue';
 import types from "./type/index.vue";
 import newTrends from "./newTrends/index.vue";
-
+import recommendBooks from "./recommendedBook/index.vue";
 
 
 const activeName = ref('first')

@@ -2,18 +2,18 @@
   <div class="new-trends">
     <el-tabs v-model="activeName" class="demo-tabs">
       <el-tab-pane label="发布动态" name="first">
-        <publishTrends />
+        <ADMINpublishTrends />
       </el-tab-pane>
       <el-tab-pane label="管理动态" name="second">
-        <manageTrends />
+        <ADMINmanageTrends />
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script setup lang="ts">
-import publishTrends from './publishTrends.vue';
-import manageTrends from './manageTrends.vue';
+import ADMINpublishTrends from './ADMIN_publishTrends.vue';
+import ADMINmanageTrends from './ADMIN_manageTrends.vue';
 
 const activeName = ref('first')
 </script>
