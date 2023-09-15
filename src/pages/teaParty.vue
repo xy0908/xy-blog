@@ -3,13 +3,13 @@
   <div class="tea-party">
     <ArticleSearch :tableData="tableData" @change="change"></ArticleSearch>
 
-    <template v-if="!isSee">
-      <ArticleShow :article="article" @isSeeTrue="isSeeTrue"></ArticleShow>
+    <template v-if="!seeArticleStore.isSee">
+      <ArticleShow :article="article"></ArticleShow>
     </template>
 
     <template v-else>
       <div class="see">
-        <seeArticle :_id_="_id_" :_file_="_file_" :_title_="_title_" @isSeeFlash="isSeeFlash" />
+        <seeArticle />
       </div>
     </template>
   </div>
@@ -27,19 +27,14 @@ import ArticleShow from '~components/teaParty/ArticleShow.vue';
  * @param { Array<Itable> } tableData 标签数据 【传递给子组件】
  * @param { Array<IseekArticle> } article 所有文章 【传递给子组件】
  * @param { string } key 请求获取文章的key值 根据key值获取文章
- * @param { boolean } isSee 是否查看文章 false不查看 true查看
- * @param { string } _file_ 查看的文章路径
- * @param { string } _id_ 查看文章的id
+ * @param { Store } seeArticleStore 查看文章的仓库
 */
 const api = import.meta.env.VITE_URL;
 const require = new Require();
 const tableData = ref<null | Array<Itable>>(null);
 const article = ref<null | Array<IseekArticle>>(null)
 const KEY = ref<string>("全部");
-const isSee = ref<boolean>(false);
-const _file_ = ref<string>("");
-const _id_ = ref<string>("");
-const _title_ = ref<string>("");
+const seeArticleStore = useSeeArticleStore();
 
 /**
  * @function
@@ -64,28 +59,6 @@ const change = (key: string) => {
 const getArticle = async (k?: string) => {
   let { data } = await require.post(api + "/teaParty/seekArticle", { key: KEY.value });
   article.value = data.data;
-}
-
-/**
- * @function
- * @description 修改isSee值为true 设置文章路径、id、标题
-*/
-const isSeeTrue = (file: string, _id: string, title: string) => {
-  isSee.value = true;
-  _file_.value = file;
-  _id_.value = _id;
-  _title_.value = title
-}
-
-/**
- * @function
- * @description 修改isSee值为flash 清空文章路径、id、标题
-*/
-const isSeeFlash = () => {
-  isSee.value = false;
-  _file_.value = "";
-  _id_.value = "";
-  _title_.value = "";
 }
 
 /**

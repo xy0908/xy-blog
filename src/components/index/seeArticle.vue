@@ -7,7 +7,7 @@
         </el-icon>
         <span @click="back">返回</span>
       </div>
-      <Title :title="_title_"></Title>
+      <Title :title="seeArticleStore._title_"></Title>
     </div>
     <MdEditor v-model="articleContent" preview-only :toolbars="[]" />
 
@@ -31,17 +31,19 @@ import { ArrowLeftBold } from "@element-plus/icons-vue"
  * @param { Require } require 请求封装的类
  * @param { string } articleContent 文章的内容
  * @param { boolean } isExposure 是否曝光 true页面浏览量+1 
+ * @param { Store } seeArticleStore 查看文章的仓库
 */
-const { _file_, _id_, _title_ } = defineProps<{
-  _id_: string,
-  _file_: string
-  _title_: string
-}>();
-const emit = defineEmits(["isSeeFlash"])
+// const { _file_, _id_, _title_ } = defineProps<{
+//   _id_: string,
+//   _file_: string
+//   _title_: string
+// }>();
+// const emit = defineEmits(["isSeeFlash"])
 const api = import.meta.env.VITE_URL;
 const require = new Require();
 const articleContent = shallowRef("");
 const isExposure = ref<boolean>(false);
+const seeArticleStore = useSeeArticleStore();
 
 
 /**
@@ -68,7 +70,7 @@ const vExposure: Directive<any, void> = (el: HTMLElement) => {
 const addBrowse = async () => {
   if (isExposure.value === false) {
     await require.post(api + "/index/addBrowse", {
-      _id_
+      _id_: seeArticleStore._id_
     });
     isExposure.value = true;
   }
@@ -79,16 +81,14 @@ const addBrowse = async () => {
  * @description 返回上一页
 */
 const back = () => {
-  emit("isSeeFlash")
+  seeArticleStore.isSeeFlash();
 }
 
 // 获取初始数据
 onMounted(async () => {
   let { data } = await require.post(api + "/index/seeArticle", {
-    value: _file_
+    value: seeArticleStore._file_,
   })
-  console.log(data);
-
   articleContent.value = data.data;
 });
 

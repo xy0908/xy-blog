@@ -36,15 +36,16 @@ import { IseekArticle } from "~types/teaParty";
 
 /**
  * @param { Array<IseekArticle> } article 所有文章 【父组件传递的数据】
+ * @param { Store } seeArticleStore 查看文章的仓库
 */
 const { article } = defineProps<{
   article: Array<IseekArticle> | null
 }>();
-const emit = defineEmits(["isSeeTrue"])
+const seeArticleStore = useSeeArticleStore();
 
 
 const see = (file: string, id: string, title: string) => {
-  emit("isSeeTrue", file, id, title)
+  seeArticleStore.isSeeTrue(file, id, title)
 }
 </script>
 

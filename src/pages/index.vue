@@ -31,12 +31,12 @@
       <!-- 中间内容 -->
       <div class="main">
         <!-- 首页文章 -->
-        <template v-if="!isSee">
-          <IndexArticle @isSeeTrue="isSeeTrue" />
+        <template v-if="!seeArticleStore.isSee">
+          <IndexArticle />
         </template>
         <!-- 查看首页文章 -->
         <template v-else>
-          <seeArticle :_id_="_id_" :_file_="_file_" :_title_="_title_" @isSeeFlash="isSeeFlash" />
+          <seeArticle />
         </template>
       </div>
       <!-- 右侧内容 -->
@@ -75,46 +75,20 @@ import seeArticle from "~components/index/seeArticle.vue";
 import { IcarouselType, Ipicture } from "~/types/index";
 
 
+
 /**
  * @param { string } api 挂载在vite环境的请求地址
  * @param { Require } require 请求封装的类
  * @param { Array<IcarouselType> } carousel 轮播图数据
  * @param { Array<Ipicture> } picture 图片区数据
- * @param { boolean } isSee 是否查看文章 false不查看 true查看
- * @param { string } _file_ 查看的文章路径
- * @param { string } _id_ 查看文章的id
- * @param { string } _title_ 文章标题
+ * @param { Store } seeArticleStore 查看文章的仓库
 */
 const api = import.meta.env.VITE_URL;
 const require = new Require();
 const carousel = ref<null | IcarouselType[]>(null);
 const picture = ref<null | Ipicture[]>(null);
-const isSee = ref<boolean>(false);
-const _file_ = ref<string>("");
-const _id_ = ref<string>("");
-const _title_ = ref<string>("")
+const seeArticleStore = useSeeArticleStore();
 
-/**
- * @function
- * @description 修改isSee值为true 设置文章路径、id、标题
-*/
-const isSeeTrue = (file: string, _id: string, title: string) => {
-  isSee.value = true;
-  _file_.value = file;
-  _id_.value = _id;
-  _title_.value = title
-}
-
-/**
- * @function
- * @description 修改isSee值为flash 清空文章路径、id、标题
-*/
-const isSeeFlash = () => {
-  isSee.value = false;
-  _file_.value = "";
-  _id_.value = "";
-  _title_.value = "";
-}
 
 onMounted(async () => {
   // 获取轮播图数据

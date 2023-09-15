@@ -24,7 +24,7 @@
         </li>
         <li>
           <i :class="item.browse.icon"></i>
-          <span>{{ item.browse.text }}</span>
+          <span>{{ Math.floor(item.browse.text / 2) }}</span>
         </li>
         <div class="read" @click="read(item.file, item._id, item.title)">点击阅读👻</div>
       </ul>
@@ -41,26 +41,26 @@ import { IindexArticle } from "~types/index";
  * @param { string } api vite环境变量配置的url值
  * @param { Require } require 封装请求的类
  * @param { Array<IindexArticle> } indexArticleData 首页文章数据
+ * @param { Store } seeArticleStore 查看文章的仓库
 */
 const emit = defineEmits(["isSeeTrue"])
 const api = import.meta.env.VITE_URL;
 const require = new Require();
 const indexArticleData = ref<null | Array<IindexArticle>>(null);
+const seeArticleStore = useSeeArticleStore();
 
 /**
  * @function 
  * @description 阅读文章
 */
 const read = (file: string, _id: string, title: string) => {
-  emit("isSeeTrue", file, _id, title);
+  seeArticleStore.isSeeTrue(file, _id, title)
 }
 
 
 onMounted(async () => {
   let { data } = await require.get(api + 'index/indexArticle')
   indexArticleData.value = data.data
-  console.log(data.data);
-
 })
 </script>
 
