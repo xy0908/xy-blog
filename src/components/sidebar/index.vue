@@ -6,7 +6,7 @@
     </div>
     <!-- nav -->
     <ul class="sidebar-ul">
-      <li class="sidebar-li" v-for="item in props.nav" :key="item.name" @mouseenter="mouseenter(item.name)"
+      <li class="sidebar-li" v-for="item in nav" :key="item.name" @mouseenter="mouseenter(item.name)"
         @mouseleave="mouseleave(item.name)" @click="pageJump(item.name)">
         <!-- isActivation === true 显示字体 -->
         <template v-if="item.isActivation">
@@ -27,23 +27,37 @@
 import navData from "~/types/route"
 import logoImg from "~asset/logo.png"
 
+/**
+ * @param { Router } router vue的路由实例
+ * @param { Array<navData> } nav 接收父组件传递的值 侧边栏的数据
+*/
 const router = useRouter()
-
-// 接收父组件传递的值
-const props = defineProps<{
+const { nav } = defineProps<{
   nav: navData[]
 }>()
 
-// 是否激活
+/**
+ * @function
+ * @description 判断当前路由是否激活 激活添加样式
+ * 
+ * @param { boolean } key 所有路由的激活值 true激活了 false未激活
+*/
 const isActivationNav = (key: boolean) => {
   if (key) return `border-right: 3px solid`
 }
 
-// 移入
+
+/**
+ * @function
+ * @description 鼠标移入触发对应的效果
+ * 
+ * @param { string } key 鼠标移入某个导航栏的字段
+ * @param { string } r_ 当前路由的字段
+*/
 const mouseenter = (key: string) => {
   const r_ = router.currentRoute.value.name
 
-  props.nav.forEach(item => {
+  nav.forEach(item => {
     item.isActivation = false
     if (item.name === key) {
       item.isActivation = true
@@ -54,10 +68,17 @@ const mouseenter = (key: string) => {
   })
 }
 
-// 移出
+/**
+ * @function
+ * @description 鼠标移出触发对应的效果
+ * 
+ * @param { string } key 鼠标移出某个导航栏的字段
+ * @param { string } r_ 当前路由的字段
+*/
 const mouseleave = (key: string) => {
   const r_ = router.currentRoute.value.name
-  props.nav.forEach(item => {
+
+  nav.forEach(item => {
     item.isActivation = false
     if (item.name === r_) {
       item.isActivation = true
@@ -65,9 +86,16 @@ const mouseleave = (key: string) => {
   })
 }
 
-// 页面跳转
+
+/**
+ * @function
+ * @description 页面跳转 
+ * 
+ * @param { string } name 跳转页面的名称
+ * 
+ * 如果跳转页面是首页 进行特殊处理
+*/
 const pageJump = (name: string): void => {
-  // 判断如果回到首页 特殊处理
   if (name === "index") {
     // @ts-ignore
     document.startViewTransition(() => {
