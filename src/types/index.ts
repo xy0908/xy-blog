@@ -11,9 +11,11 @@ export type Ipicture = string
 
 // 博客信息
 export interface IblogInfo {
-  backgroundImg: string
-  article: number
-  message: number
+  backgroundImg: string;
+  data: Array<{
+    text: string;
+    num: number;
+  }>
 }
 
 // 最新动态

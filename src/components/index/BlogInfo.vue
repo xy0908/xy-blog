@@ -13,14 +13,14 @@
 
     <!-- 具体信息 -->
     <ul class="specific-info">
-      <li>
-        <span>文章</span>
-        <span>{{ blogInfo?.article }}</span>
+      <li v-for="item in blogInfo?.data" :key="item.text">
+        <span>{{ item.text }}</span>
+        <span>{{ item.num }}</span>
       </li>
-      <li>
+      <!-- <li>
         <span>留言</span>
         <span>{{ blogInfo?.message }}</span>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>
@@ -128,12 +128,16 @@ onUnmounted(() => {
       width: 50%;
       border-right: 1px solid #eee;
 
+      &:hover {
+        background: #eee;
+      }
+
       span {
         margin: 3px 0;
         font-size: 14px;
       }
 
-      &:nth-child(2) {
+      &:nth-child(3) {
         border-right: none;
       }
     }
