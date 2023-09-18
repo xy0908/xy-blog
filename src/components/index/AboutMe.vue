@@ -11,7 +11,7 @@
     <div class="about">
       <Title :title="`关于我`"></Title>
       <ul class="main">
-        <li v-for="(item, index) in aboutData" :key="index">
+        <li v-for="(item, index) in aboutData" :key="index" @click="pageJump(item.link)">
           <i :class="item.icon"></i>
           <span>{{ item.text }}</span>
         </li>
@@ -31,6 +31,17 @@ const aboutData = useIndexStore().aboutData
 const loginImagesData = ref<null | IloginImages>(null)
 // wellKnownSaying 
 const saying = ref<string>("")
+
+
+/**
+ * @function
+ * @description 页面跳转
+ * 
+ * @param { string } r 跳转的路径
+*/
+const pageJump = (r: string) => {
+  location.replace(r);
+}
 
 onMounted(async () => {
   // 是否登录 的背景图片
