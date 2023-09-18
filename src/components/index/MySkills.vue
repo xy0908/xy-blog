@@ -45,6 +45,7 @@ const mySkillsData = useIndexStore().mySkillsData
 
       .text {
         margin-left: 5px;
+        font-family: weizhi;
         font-size: 14px;
         color: #777;
       }

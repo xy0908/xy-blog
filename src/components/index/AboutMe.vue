@@ -146,6 +146,7 @@ onMounted(async () => {
         span {
           margin-left: 5px;
           font-size: 13px;
+          font-family: weizhi;
         }
       }
     }

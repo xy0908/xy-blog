@@ -103,6 +103,7 @@ onMounted(async () => {
       h4 {
         overflow: hidden;
         width: 90%;
+        font-family: weizhi;
         white-space: nowrap;
         text-overflow: ellipsis;
         font-size: 16px;
@@ -111,6 +112,7 @@ onMounted(async () => {
 
       span {
         font-size: 13px;
+        font-family: weizhi;
         color: #777
       }
     }

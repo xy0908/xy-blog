@@ -100,6 +100,7 @@ onUnmounted(() => {
     display: flex;
     flex-direction: column;
     padding: 20px;
+    font-family: weizhi;
     border-bottom: 1px solid #eee;
 
     .title {
@@ -125,6 +126,7 @@ onUnmounted(() => {
       justify-content: space-between;
       align-items: center;
       padding: 5px;
+      font-family: weizhi;
       width: 50%;
       border-right: 1px solid #eee;
 
