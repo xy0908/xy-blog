@@ -11,7 +11,7 @@
 
     <!-- 查看最新动态 -->
     <el-dialog v-model="dialogVisible" :title="currentTrendsContent.time" width="30%" :before-close="handleClose">
-      <span>{{ currentTrendsContent.title }}</span>
+      <span style="font-family: weizhi;">{{ currentTrendsContent.title }}</span>
       <template #footer>
         <span class="dialog-footer">
           <el-button type="primary" @click="dialogVisible = false">确定</el-button>
@@ -60,7 +60,7 @@ const seeCurrentTrendsContent = (time: string, title: string) => {
  * @description 关闭对话框
 */
 const handleClose = (done: () => void) => {
-  ElMessageBox.confirm('Are you sure to close this dialog?')
+  ElMessageBox.confirm('是否关闭当前窗口?')
     .then(() => {
       done()
     })
@@ -72,7 +72,6 @@ const handleClose = (done: () => void) => {
 onMounted(async () => {
   let { data } = await require.get(api + '/index/NewTrends')
   newTrendsData.value = data
-  console.log(data);
 
 })
 </script>
