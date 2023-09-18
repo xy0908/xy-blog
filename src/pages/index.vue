@@ -285,4 +285,19 @@ onMounted(async () => {
     }
   }
 }
+
+// 屏幕最小宽度为1500px的时候  【轮播图宽度为100%】 【隐藏图片区域】 【下半部分宽度由85%更改为100%】
+@media screen and (max-width:1500px) {
+  .el-carousel {
+    width: 100% !important;
+  }
+
+  .picture {
+    display: none !important;
+  }
+
+  .index-bottom {
+    width: 100% !important;
+  }
+}
 </style>
