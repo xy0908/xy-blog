@@ -45,8 +45,6 @@ const changeKey = (key: string) => {
   align-items: center;
   width: 100%;
   height: 150px;
-  border-radius: 20px 20px 0 0;
-  background-color: #B9E6E3;
 
   .table {
     display: flex;

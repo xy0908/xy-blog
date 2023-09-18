@@ -1,5 +1,5 @@
 <template>
-  <div class="contact" :style="{ background: `url(${bgData})` }">
+  <div class="contact">
     <!-- 邮件盒子 -->
     <div class="email-wrap">
       <!-- 头部 -->
@@ -39,7 +39,6 @@ import { EmailInfo, UserName, Email } from "~rules/index";
 const api = import.meta.env.VITE_URL;
 const require = new Require();
 const formRef = ref<FormInstance>()
-const bgData = ref<string>("");
 
 // 表单双向绑定数据
 const fromData = reactive({
@@ -92,12 +91,6 @@ const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
 }
-
-// 获取背景图片
-onMounted(async () => {
-  let { data } = await require.get(api + "/contact/bg");
-  bgData.value = data
-})
 </script>
 
 <style scoped lang="less">

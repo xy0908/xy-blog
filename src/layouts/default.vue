@@ -1,5 +1,8 @@
 <template>
   <div class="default">
+    <!-- 视频背景 -->
+    <video class="video-bg" :src="bg" autoplay lopp muted :poster="videoBg"></video>
+
     <!-- 侧边栏 -->
     <sidebar :nav="nav" />
 
@@ -14,12 +17,21 @@
 </template>
 
 <script setup lang="ts">
-import sidebar from "~components/sidebar/index.vue"
+import sidebar from "~components/sidebar/index.vue";
+import bg from "../../public/music/bg.mp4";
+import videoBg from "../../public/music/bg.png";
 
+/**
+ * @param { Store } nav 路由的仓库
+ * @param { any } scrollbarRef 滚动条的ref
+*/
 const { nav } = useRouterStore()
 const scrollbarRef = ref<any>(null)
 
-// 滚动条
+/**
+ * @function
+ * @description 滚动条滚动的距离
+*/
 const scroll = () => {
   const scrollDistance = document.documentElement.scrollTop || document.body.scrollTop || 0;
 
@@ -32,15 +44,17 @@ const scroll = () => {
   }
 }
 
-// 回到顶部
+/**
+ * @function
+ * @description 回到顶部
+*/
 const backToTop = () => {
   document.documentElement.scrollTop = 0;
 }
 
+// 监听页面滚动
 onMounted(() => {
   scrollbarRef.value = scrollbarRef.value;
-
-  // 监听页面滚动
   if (scrollbarRef.value !== null) { window.addEventListener("scroll", scroll, true) }
 })
 </script>
@@ -49,12 +63,21 @@ onMounted(() => {
 .default {
   position: relative;
   display: flex;
-  width: 100%;
+
+  // 视频背景
+  .video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    background: red;
+    transform: scale(1.2);
+  }
 
   .route {
     flex-grow: 1;
-    margin-left: 200px;
-    background: #efefef;
     view-transition-name: router;
   }
 

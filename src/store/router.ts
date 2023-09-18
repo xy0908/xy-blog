@@ -22,12 +22,12 @@ export const useRouterStore = defineStore("router", () => {
             icon: "iconfont icon-beijingyinle",
             isActivation: false,
         },
-        {
-            name: "about",
-            text: "关于我",
-            icon: "iconfont icon-guanyuwomen",
-            isActivation: false,
-        },
+        // {
+        //     name: "about",
+        //     text: "关于我",
+        //     icon: "iconfont icon-guanyuwomen",
+        //     isActivation: false,
+        // },
         {
             name: "contactMe",
             text: "联系我",

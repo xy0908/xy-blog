@@ -128,7 +128,6 @@ onMounted(async () => {
   padding: 40px;
   width: 100%;
   height: 100%;
-  background: url("../asset/1.jpg");
 
   .index-top {
     display: flex;

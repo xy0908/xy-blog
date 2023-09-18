@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <!-- 管理员的背景 -->
-    <div class="admin-bg" :style="{ background: `url(${bgImg}) no-repeat center/cover` }"></div>
+    <div class="admin-bg"></div>
     <!-- 发布文章登录 -->
     <template v-if="logonBol !== true">
       <logon></logon>
@@ -30,7 +30,6 @@ import publish from '~components/admin/index.vue';
 const key = import.meta.env.VITE_TOKEN;
 const api = import.meta.env.VITE_URL;
 const logonBol = ref<any>(null)
-const bgImg = ref<string | null>(null);
 const require = new Require();
 
 
@@ -65,15 +64,8 @@ const automaticLogon = async () => {
   }
 }
 
-/**
- * @function
- * @description 在页面挂载的时候 请求背景图片的数据
-*/
+
 onMounted(async () => {
-  {
-    let { data } = await require.get(api + "/admin/adminBackground");
-    bgImg.value = data;
-  }
   automaticLogon();
 })
 </script>
