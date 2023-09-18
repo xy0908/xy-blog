@@ -16,7 +16,10 @@
           </template>
         </el-upload>
       </el-form-item>
-
+      <!-- 推荐书籍的理由 -->
+      <el-form-item label="推荐理由" prop="reason" :rules="[{ required: true, message: `请输入您推荐的理由`, trigger: `blur` }]">
+        <el-input type="textarea" v-model="fromData.reason" placeholder="请输入您推荐的理由" />
+      </el-form-item>
       <el-form-item class="el-my-button">
         <el-button type="primary" @click="submitForm(formRef)">Submit</el-button>
         <el-button @click="resetForm(formRef)">Reset</el-button>
@@ -33,6 +36,7 @@ import type { FormInstance } from 'element-plus';
 type T = {
   bookName: string;
   img: string;
+  reason: string;
   time: string
 }
 
@@ -51,6 +55,7 @@ const uploadImgRef = ref<any>()
 const fromData = reactive<T>({
   bookName: "",
   img: "",
+  reason: "",
   time: ""
 });
 const time = new Time()
@@ -66,12 +71,12 @@ const handleSuccessImg = (response: any) => {
 
 /**
  * @function
- * @description 请求登录
+ * @description 发送推荐书籍请求
 */
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate(async (valid) => {
-    // 验证规则通过 请求登录
+    // 验证规则通过 发送推荐书籍请求
     if (valid) {
       fromData.time = time.getNowTime();
       let { data } = await require.post(api + "/recommendBooks/submitToDataBank", {
@@ -122,5 +127,13 @@ const resetForm = (formEl: FormInstance | undefined) => {
   .el-input {
     width: 250px !important;
   }
+}
+
+:deep(.el-textarea) {
+  width: 300px !important;
+}
+
+:deep(.el-textarea__inner) {
+  height: 150px;
 }
 </style>
