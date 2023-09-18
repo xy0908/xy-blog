@@ -4,7 +4,7 @@
     <ul class="sidebar-ul">
       <li class="sidebar-li" v-for="item in nav" :key="item.name" @click="pageJump(item.name)">
         <div class="icon">
-          <span :class="item.icon"></span>
+          <i :class="item.icon"></i>
         </div>
       </li>
     </ul>
@@ -58,17 +58,30 @@ const pageJump = (name: string): void => {
   flex-direction: column;
   align-items: center;
   padding: 50px 0;
-  width: 150px;
+  width: 200px;
   height: 100%;
 
   .sidebar-ul {
+    overflow: hidden;
+    z-index: 10;
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 70%;
     height: 80%;
-    opacity: 0.5;
     border-radius: 20px;
-    background: #ffffff;
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+      background: #ffffff;
+
+    }
 
     .sidebar-li {
       position: relative;
@@ -88,6 +101,13 @@ const pageJump = (name: string): void => {
           font-size: 30px;
           font-weight: bold;
           color: #000;
+          transition: all 0.4s;
+        }
+
+        &:hover {
+          .iconfont {
+            font-size: 45px;
+          }
         }
       }
     }
